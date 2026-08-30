@@ -1,0 +1,33 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Markdown from '../components/Markdown.astro';
+
+const explainer = `
+Restez libre dans vos pensées, vos actions, votre vie...
+
+Cette petite anecdote basée sur des faits réels \([Wikipédia](https://fr.wikipedia.org/wiki/Fable_de_la_grenouille)\) dit tout sur la notion de
+liberté et l'érosion lente, progressive et continue de cette même liberté aujourd'hui:
+
+_Si l'on plonge subitement une grenouille dans de l'eau chaude, 
+elle s'échappe d'un bond ; alors que si on la plonge dans l'eau 
+froide et qu'on chauffe l'eau très progressivement, la grenouille 
+s'engourdit ou s'habitue à la température et finit par mourir._
+
+Lorsque des petits obstacles surviennent, il faut être attentif, 
+prendre garde à ne pas se faire avoir comme la grenouille !
+
+**Plus on tarde, plus il est difficile de se sortir de situations problématiques.**
+`;
+---
+
+<Layout title="Mgr Rémy, evêque exorciste">
+    <h1 class="mb-10">Père Remy, exorciste, conjurateur à votre service</h1>
+    <Markdown content={explainer} class="mb-10 text-lg" />
+    <!--p>
+        <a href="https://docs.netlify.com/frameworks/astro/" class="btn btn-lg sm:min-w-64">Read the Docs</a>
+    </p-->
+    <br/>
+    <p>
+        <a href="https://www.linkedin.com/messaging/thread/new/" class="btn btn-lg sm:min-w-64">Contact</a>
+    </p>
+</Layout>
