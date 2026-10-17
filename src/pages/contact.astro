@@ -1,0 +1,89 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const inputClass =
+    'w-full px-4 py-3 text-white placeholder-gray-400 border rounded bg-white/10 border-white/20 focus:outline-none focus:border-primary';
+---
+
+<Layout title="Contact | Mgr Rémy, evêque exorciste">
+    <h1 class="mb-6">Contact</h1>
+    <p class="mb-10 text-lg">
+        Décrivez votre situation en quelques lignes. Vous pouvez joindre un document (photo, lettre, certificat…) si cela
+        peut aider à comprendre votre demande. Toutes les demandes sont traitées en toute confidentialité.
+    </p>
+
+    <form
+        id="contact-form"
+        name="contact"
+        method="POST"
+        action="/merci"
+        enctype="multipart/form-data"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        class="flex flex-col max-w-2xl gap-6 mb-16"
+    >
+        <input type="hidden" name="form-name" value="contact" />
+        <input type="hidden" name="subject" value="Nouvelle demande de contact - %{siteName}" />
+        <p class="hidden">
+            <label>Ne pas remplir : <input name="bot-field" /></label>
+        </p>
+
+        <div class="grid gap-6 sm:grid-cols-2">
+            <label class="flex flex-col gap-2">
+                <span class="font-semibold">Nom *</span>
+                <input type="text" name="name" required autocomplete="name" class={inputClass} />
+            </label>
+            <label class="flex flex-col gap-2">
+                <span class="font-semibold">E-mail *</span>
+                <input type="email" name="email" required autocomplete="email" class={inputClass} />
+            </label>
+        </div>
+
+        <label class="flex flex-col gap-2">
+            <span class="font-semibold">Téléphone</span>
+            <input type="tel" name="phone" autocomplete="tel" class={inputClass} />
+        </label>
+
+        <label class="flex flex-col gap-2">
+            <span class="font-semibold">Message *</span>
+            <textarea name="message" rows="6" required class={inputClass}></textarea>
+        </label>
+
+        <label class="flex flex-col gap-2">
+            <span class="font-semibold">Document (facultatif)</span>
+            <input
+                id="document"
+                type="file"
+                name="document"
+                accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png,.heic"
+                class="block w-full text-sm text-gray-200 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:font-semibold file:bg-primary file:text-primary-content file:cursor-pointer"
+            />
+            <span class="text-sm text-gray-300">PDF, Word, texte ou image — 8 Mo maximum.</span>
+            <span id="document-error" class="hidden text-sm text-primary" role="alert"></span>
+        </label>
+
+        <div>
+            <button type="submit" class="btn btn-lg sm:min-w-64">Envoyer</button>
+        </div>
+    </form>
+</Layout>
+
+<script>
+    const MAX_SIZE = 8 * 1024 * 1024;
+    const form = document.getElementById('contact-form') as HTMLFormElement;
+    const fileInput = document.getElementById('document') as HTMLInputElement;
+    const error = document.getElementById('document-error') as HTMLElement;
+
+    const validateFile = () => {
+        const file = fileInput.files?.[0];
+        const tooLarge = !!file && file.size > MAX_SIZE;
+        error.textContent = tooLarge ? 'Le fichier dépasse 8 Mo. Merci de choisir un fichier plus léger.' : '';
+        error.classList.toggle('hidden', !tooLarge);
+        return !tooLarge;
+    };
+
+    fileInput.addEventListener('change', validateFile);
+    form.addEventListener('submit', (e) => {
+        if (!validateFile()) e.preventDefault();
+    });
+</script>
