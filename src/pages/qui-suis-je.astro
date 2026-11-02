@@ -1,0 +1,33 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Markdown from '../components/Markdown.astro';
+
+const explainer = `
+Je suis le Père Rémy, Évêque exorciste depuis 2018 et conjurateur, au service de toutes les personnes qui traversent des épreuves spirituelles.
+
+## Une légitimité fondée sur la filiation apostolique
+
+Mon ministère s'inscrit dans la **filiation apostolique de la PEAVC**. La succession apostolique est la transmission ininterrompue, par l'imposition des mains, du sacrement de l'ordre depuis les Apôtres jusqu'aux évêques d'aujourd'hui.
+
+C'est par cette chaîne de consécrations, reçue au sein de la PEAVC, que mon ordination est valide et que je suis habilité à exercer pleinement le ministère sacerdotal :
+
+* célébrer les sacrements,
+* pratiquer les rituels de bénédiction et de délivrance,
+* accomplir les exorcismes et les conjurations.
+
+Cette filiation garantit que les rituels que je pratique ne relèvent pas d'une initiative personnelle, mais d'une tradition reçue, transmise et vécue dans la continuité de l'Église des Apôtres.
+
+## Ma mission
+
+Accompagner, protéger et libérer celles et ceux qui en ont besoin, avec bienveillance, discrétion et dans le respect de chacun.
+`;
+---
+
+<Layout title="Qui suis-je | Mgr Rémy, evêque exorciste">
+    <h1 class="mb-10">Qui suis-je ?</h1>
+    <Markdown content={explainer} class="mb-10 text-lg" />
+
+    <p>
+        <a href="/contact" class="btn btn-lg sm:min-w-64">Me contacter</a>
+    </p>
+</Layout>
