@@ -10,9 +10,9 @@ interface Props {
 }
 
 const { title } = Astro.props;
-const statUrlPrefix = 'https://us-central1-logj-fba7c.cloudfunctions.net/save5?reqpgurl=';
+const statUrlPrefix = 'https://us-central1-logj-fba7c.cloudfunctions.net/save5?reqpgurl';
 // https://us-central1-logj-fba7c.cloudfunctions.net/save5?reqpgurl=%2F35-ans-d-experience
-let statUrl = statUrlPrefix + encodeURIComponent(Astro.url.pathname);
+let statUrl = statUrlPrefix + "=" + encodeURIComponent(Astro.url.pathname);
 ---
 
 <!doctype html>
